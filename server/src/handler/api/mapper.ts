@@ -53,6 +53,8 @@ export function parsePostsWithPgToPb(
   pg: Pagination
 ): ListPostsResponsePb {
   const res = new ListPostsResponsePb()
+  res.setPage(pg.page)
+  res.setPagesize(pg.pageSize)
   res.setTotalpages(pg.totalPages)
 
   const postsPb = posts.map((post) => parsePostToPb(post))
