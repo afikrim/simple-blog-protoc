@@ -4,7 +4,7 @@ package blog;
 
 import "google/protobuf/empty.proto";
 
-service BlogService {
+service PostService {
   rpc ListPosts(ListPostsRequest) returns (ListPostsResponse) {}
   rpc GetPost(GetPostRequest) returns (Post) {}
   rpc CreatePost(CreatePostRequest) returns (google.protobuf.Empty) {}
@@ -18,18 +18,11 @@ enum Order {
   ORDER_DESC = 2;
 }
 
-enum Sort {
-  SORT_UNKNOWN = 0;
-  SORT_ID = 1;
-  SORT_CREATED_AT = 2;
-  SORT_UPDATED_AT = 3;
-}
-
 message ListPostsRequest {
   int32 Page = 1;
   int32 PageSize = 2;
   Order Order = 3;
-  Sort Sort = 4;
+  string Sort = 4;
 }
 
 message ListPostsResponse {
@@ -40,7 +33,7 @@ message ListPostsResponse {
 }
 
 message GetPostRequest {
-  string Id = 1;
+  int32 Id = 1;
 }
 
 message CreatePostRequest {
@@ -49,17 +42,17 @@ message CreatePostRequest {
 }
 
 message UpdatePostRequest {
-  string Id = 1;
+  int32 Id = 1;
   string Title = 2;
   string Content = 3;
 }
 
 message DeletePostRequest {
-  string Id = 1;
+  int32 Id = 1;
 }
 
 message Post {
-  string Id = 1;
+  int32 Id = 1;
   string Title = 2;
   string Content = 3;
 }

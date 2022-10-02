@@ -1,1 +1,1 @@
-blog.proto
+post.proto

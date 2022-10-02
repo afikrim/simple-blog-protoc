@@ -14,6 +14,7 @@ FILENAME_WITH_EXTENSION=$2
 FILENAME=$(echo $FILENAME_WITH_EXTENSION | cut -d'.' -f1)
 
 # Path to this plugin
+PROTOC_GEN_JS_PATH="/Users/azizf/Documents/protobuf-javascript/bazel-bin/generator/protoc-gen-js"
 PROTOC_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts"
 PROTOC_GEN_GRPC_PATH="./node_modules/.bin/grpc_tools_node_protoc_plugin"
 
@@ -24,6 +25,7 @@ if ! [ -d "$OUT_DIR" ]; then
 fi
 
 protoc \
+    --plugin="protoc-gen-js=${PROTOC_GEN_JS_PATH}" \
     --plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" \
     --plugin="protoc-gen-grpc=${PROTOC_GEN_GRPC_PATH}" \
     --js_out="import_style=commonjs,binary:${OUT_DIR}" \
